@@ -5,9 +5,6 @@ import com.mjc.stage2.entity.AbstractTextComponent;
 import com.mjc.stage2.entity.TextComponent;
 import com.mjc.stage2.entity.TextComponentType;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class WordParser extends AbstractTextParser {
     private static final String WORD_REGEX = "\\w[\\w!=?():]+";
 
@@ -20,21 +17,15 @@ public class WordParser extends AbstractTextParser {
     }
     @Override
     public void parse(AbstractTextComponent abstractTextComponent, String string) {
-        Pattern pattern = Pattern.compile(WORD_REGEX);
-        Matcher matcher = pattern.matcher(string);
-
-        while (matcher.find()) {
-            String word = matcher.group();
+        String[] words = string.split(WORD_REGEX);
+        for (String word: words) {
             if(nextParser != null) {
-                nextParser.parse(abstractTextComponent, string);
+                nextParser.parse(abstractTextComponent, word);
             }
             else {
-                TextComponent component = new TextComponent(TextComponentType.WORD);
-                abstractTextComponent.add(component);
+                abstractTextComponent.add(new TextComponent(TextComponentType.WORD));
             }
         }
     }
-
-    // Write your code here!
 
 }

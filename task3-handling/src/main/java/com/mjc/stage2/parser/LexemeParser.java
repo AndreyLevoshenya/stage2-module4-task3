@@ -2,7 +2,6 @@ package com.mjc.stage2.parser;
 
 import com.mjc.stage2.entity.AbstractTextComponent;
 import com.mjc.stage2.entity.SymbolLeaf;
-import com.mjc.stage2.entity.TextComponentType;
 
 public class LexemeParser extends AbstractTextParser {
     private static final String LEXEME_REGEX = "\\s+";
@@ -22,7 +21,7 @@ public class LexemeParser extends AbstractTextParser {
                 nextParser.parse(abstractTextComponent, lexeme);
             }
             else {
-                abstractTextComponent.add(new SymbolLeaf(TextComponentType.SYMBOL));
+                abstractTextComponent.add(new SymbolLeaf(lexeme));
             }
         }
     }
