@@ -17,12 +17,12 @@ public class SymbolLeaf extends AbstractTextComponent {
 
     @Override
     public void add(AbstractTextComponent textComponent) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Cannot add component to leaf node");
+        throw new UnsupportedOperationException("Cannot add text component to components");
     }
 
     @Override
     public void remove(AbstractTextComponent textComponent) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Cannot remove component from leaf node");
+        throw new UnsupportedOperationException("Cannot remove text component from components");
     }
 
     @Override

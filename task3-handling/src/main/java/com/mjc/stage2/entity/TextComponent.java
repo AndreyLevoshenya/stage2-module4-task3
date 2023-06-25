@@ -7,36 +7,34 @@ public class TextComponent extends AbstractTextComponent{
     protected List<AbstractTextComponent> componentList = new ArrayList<>();
     private int size = 0;
 
-    public TextComponent(TextComponentType componentType) {
-        super(componentType);
+    public TextComponent(TextComponentType textComponentType) {
+        super(textComponentType);
     }
 
 
     @Override
     public String operation() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (AbstractTextComponent component : componentList) {
-            stringBuilder.append(component.operation());
+        StringBuilder builder = new StringBuilder();
+        for (AbstractTextComponent component: componentList) {
+            builder.append(component);
         }
-        return stringBuilder.toString();
+        return builder.toString();
     }
 
     @Override
     public void add(AbstractTextComponent textComponent) {
         componentList.add(textComponent);
+        size += textComponent.getSize();
     }
 
     @Override
     public void remove(AbstractTextComponent textComponent) {
         componentList.remove(textComponent);
+        size -= textComponent.getSize();
     }
 
     @Override
     public int getSize() {
-        size = 0;
-        for (AbstractTextComponent component : componentList) {
-            size += component.getSize();
-        }
         return size;
     }
 }

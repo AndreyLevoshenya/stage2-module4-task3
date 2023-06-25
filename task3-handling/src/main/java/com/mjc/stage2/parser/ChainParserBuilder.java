@@ -17,17 +17,16 @@ public class ChainParserBuilder {
     }
 
     public AbstractTextParser build() {
-        AbstractTextParser chain = null;
-        try {
-            if(parsers.isEmpty()) {
+        if(parsers.isEmpty()) {
+            try {
                 throw new HandlingException();
+            } catch (HandlingException e) {
+                e.printStackTrace();
             }
-            chain = parsers.get(0);
-            for (int i = 1; i < parsers.size(); i++) {
-                chain.setNextParser(parsers.get(i));
-            }
-        } catch (HandlingException e) {
-            e.printStackTrace();
+        }
+        AbstractTextParser chain = parsers.get(0);
+        for (int i = 1; i < parsers.size(); i++) {
+            chain.setNextParser(parsers.get(i));
         }
         return chain;
     }
