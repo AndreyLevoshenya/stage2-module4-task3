@@ -4,9 +4,9 @@ public class SymbolLeaf extends AbstractTextComponent {
 
     private char value;
 
-    public SymbolLeaf(String value) {
-        super(TextComponentType.SYMBOL);
-        this.value = value.charAt(0);
+    public SymbolLeaf(char value, TextComponentType textComponentType) {
+        super(textComponentType);
+        this.value = value;
     }
 
 
@@ -16,17 +16,17 @@ public class SymbolLeaf extends AbstractTextComponent {
     }
 
     @Override
-    public void add(AbstractTextComponent textComponent) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Cannot add text component to components");
+    public void add(AbstractTextComponent textComponent) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public void remove(AbstractTextComponent textComponent) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Cannot remove text component from components");
+    public void remove(AbstractTextComponent textComponent) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int getSize() {
-        return 1;
+        throw new UnsupportedOperationException();
     }
 }

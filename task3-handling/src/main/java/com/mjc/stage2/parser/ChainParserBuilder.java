@@ -1,5 +1,6 @@
 package com.mjc.stage2.parser;
 
+import com.mjc.stage2.entity.SymbolLeaf;
 import com.mjc.stage2.exception.HandlingException;
 
 import java.util.ArrayList;
@@ -17,16 +18,11 @@ public class ChainParserBuilder {
     }
 
     public AbstractTextParser build() {
-        if(parsers.isEmpty()) {
-            try {
-                throw new HandlingException();
-            } catch (HandlingException e) {
-                e.printStackTrace();
-            }
-        }
         AbstractTextParser chain = parsers.get(0);
         for (int i = 1; i < parsers.size(); i++) {
-            chain.setNextParser(parsers.get(i));
+            if(chain != null) {
+                chain.setNextParser(parsers.get(i));
+            }
         }
         return chain;
     }

@@ -1,31 +1,16 @@
 package com.mjc.stage2.parser;
 
-
 import com.mjc.stage2.entity.AbstractTextComponent;
-import com.mjc.stage2.entity.TextComponent;
+import com.mjc.stage2.entity.SymbolLeaf;
 import com.mjc.stage2.entity.TextComponentType;
 
 public class WordParser extends AbstractTextParser {
-    private static final String WORD_REGEX = "\\w[\\w!=?():]+";
 
-    public WordParser() {
-
-    }
-
-    public WordParser(AbstractTextParser nextParser) {
-        super(nextParser);
-    }
     @Override
     public void parse(AbstractTextComponent abstractTextComponent, String string) {
-        String[] words = string.split(WORD_REGEX);
-        for (String word: words) {
-            if(nextParser != null) {
-                nextParser.parse(abstractTextComponent, word);
-            }
-            else {
-                abstractTextComponent.add(new TextComponent(TextComponentType.WORD));
-            }
+        char[] chars = string.toCharArray();
+        for (char c : chars) {
+            abstractTextComponent.add(new SymbolLeaf(c, TextComponentType.WORD));
         }
     }
-
 }
